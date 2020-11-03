@@ -21,6 +21,17 @@ const getTodoByID = async (req, res) => {
         return res.status(500).json(err);
     }
 }
+// get toto by title
+const getTodoByTitle = async (req, res) => {
+    const title = req.params.todoTitle 
+    try {
+        const todo = await Todo.findOne({title: title})
+        return res.status(200).json(todo)
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+        
+    }
 // create todo in the data base
 const createTodo = async (req, res) => {
     
@@ -38,3 +49,4 @@ const createTodo = async (req, res) => {
 module.exports.getTodoByID = getTodoByID
 module.exports.getTodos = getTodos
 module.exports.createTodo = createTodo
+module.exports.getTodoByTitle = getTodoByTitle
